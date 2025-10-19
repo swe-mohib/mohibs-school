@@ -114,8 +114,7 @@ function HomeLayout({ children }) {
           </ul>
         </div>
       </div>
-
-      {children}
+      <div className="min-h-[80vh]">{children}</div>
       <Footer />
     </div>
   );
