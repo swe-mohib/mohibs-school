@@ -24,7 +24,7 @@ function User() {
   return (
     <HomeLayout>
       <div className="min-h-screen flex justify-center items-center">
-        <div className="flex flex-col justify-center gap-3 p-12 rounded-lg text-white w-1/3 shadow-[0_0_10px_black]">
+        <div className="flex flex-col justify-center gap-3 p-12 rounded-lg text-white w-3/4  md:w-1/3 shadow-[0_0_10px_black]">
           <img
             src={avatar.secure_url}
             alt="profile_image"
@@ -53,16 +53,16 @@ function User() {
                 : "Not Subscribed"}
             </p>
           </div>
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2">
             <Link
               to={"/changepassword"}
-              className="w-1/2 text-center bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 rounded-sm py-2 mt-2 font-semibold text-lg cursor-pointer"
+              className="md:w-1/2 w-full text-center bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 rounded-sm py-2 mt-2 font-semibold text-lg cursor-pointer"
             >
               Change Password
             </Link>
             <Link
               to={"/user/editprofile"}
-              className="w-1/2 text-center bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 rounded-sm py-2 mt-2 font-semibold text-lg cursor-pointer"
+              className="md:w-1/2 w-full text-center bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 rounded-sm py-2 mt-2 font-semibold text-lg cursor-pointer"
             >
               Edit Profile
             </Link>

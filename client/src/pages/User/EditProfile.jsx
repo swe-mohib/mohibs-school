@@ -81,7 +81,7 @@ function EditProfile() {
       <div className="min-h-screen flex  justify-center items-center">
         <form
           onSubmit={handleUpdateForm}
-          className="flex flex-col justify-center gap-3 p-12 rounded-lg text-white w-1/3 shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 p-12 rounded-lg text-white w-3/4 md:w-1/3 shadow-[0_0_10px_black]"
         >
           <div className="mb-4 flex justify-between relative items-center">
             <button

@@ -5,7 +5,7 @@
 1. Clone the project
 
 ```
-    git clone https://github.com/singhsanket143/lms-frontend-hn.git
+    git clone https://github.com/swe-mohib/lms.git
 ```
 
 2. Move into the directory
@@ -96,7 +96,6 @@ npm install @reduxjs/toolkit react-redux react-router-dom react-icons react-char
 ```
 
 4. To enable auto import sort on file save in vscode
-
    - Open `settings.json`
    - add the following config
 

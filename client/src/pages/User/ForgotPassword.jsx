@@ -40,7 +40,7 @@ function ForgotPassword() {
       <div className="flex justify-center items-center min-h-screen">
         <form
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-center gap-3 w-1/3 p-12 rounded-lg text-white shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 w-3/4 md:w-1/3 p-12 rounded-lg text-white shadow-[0_0_10px_black]"
         >
           <div className="mb-4 flex justify-between relative items-center">
             <button

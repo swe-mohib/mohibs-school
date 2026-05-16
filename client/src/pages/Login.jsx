@@ -46,7 +46,7 @@ function Login() {
       <div className="min-h-screen flex justify-center items-center">
         <form
           onSubmit={handleLogin}
-          className="flex flex-col justify-center gap-3 p-4 rounded-lg text-white w-1/3 shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 p-4 rounded-lg text-white w-3/4 md:w-1/3 shadow-[0_0_10px_black]"
         >
           <h3 className="text-center font-bold text-2xl">Login</h3>
           <div className="gap-1">

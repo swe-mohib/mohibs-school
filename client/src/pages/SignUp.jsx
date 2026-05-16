@@ -69,7 +69,7 @@ function SignUp() {
 
     if (!isValidPassword(signupData.password)) {
       toast.error(
-        "Password should be 6 - 16 character long with atleast a number and special character"
+        "Password should be 6 - 16 character long with atleast a number and special character",
       );
       return;
     }
@@ -100,7 +100,7 @@ function SignUp() {
         <form
           noValidate
           onSubmit={createNewAccount}
-          className="flex flex-col justify-center gap-3 p-4 rounded-lg text-white w-1/3 shadow-[0_0_10px_black]"
+          className="flex flex-col justify-center gap-3 p-4 rounded-lg text-white w-3/4 md:w-1/3 shadow-[0_0_10px_black]"
         >
           <h1 className="text-2xl text-center font-bold">Registration Page</h1>
 

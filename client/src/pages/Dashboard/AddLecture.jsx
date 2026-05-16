@@ -81,7 +81,7 @@ function AddLecture() {
       <div className="flex justify-center items-center min-h-screen">
         <form
           onSubmit={handleAddLecture}
-          className="px-14 py-10 my-10 rounded-lg text-white shadow-[0_0_10px_black] relative"
+          className="px-14 pb-10 pt-16 my-10 rounded-lg text-white shadow-[0_0_10px_black] relative  w-3/4 md:w-1/3 overflow-hidden"
         >
           <button
             type="button"
@@ -90,7 +90,7 @@ function AddLecture() {
           >
             <FaArrowLeft />
           </button>
-          <h3 className="text-lg font-semibold bg-yellow-600 inline-block px-2 absolute top-0 right-0">
+          <h3 className="text-lg w-full text-center font-semibold bg-yellow-600 inline-block px-2 absolute top-0 right-0">
             {state.title}
           </h3>
           <h1 className="text-3xl font-bold text-center mb-4">Add Lecture</h1>
@@ -124,7 +124,7 @@ function AddLecture() {
             />
           </div>
           <div className="flex flex-col gap-1 py-1">
-            <label htmlFor="lecture" className="cursor-pointer w-96">
+            <label htmlFor="lecture" className="cursor-pointer w-full">
               {lectureData.previewLecture ? (
                 <div className="w-full h-auto border mt-2 relative">
                   <video

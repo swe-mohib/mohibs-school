@@ -89,10 +89,10 @@ function UpdateCourse() {
       <div className="flex justify-center items-center min-h-screen">
         <form
           onSubmit={handleUpdateCourse}
-          className="px-14 py-5 rounded-lg text-white shadow-[0_0_10px_black]"
+          className="px-14 py-5 rounded-lg text-white shadow-[0_0_10px_black]  w-3/4 md:w-fit"
         >
           <h1 className="text-3xl font-bold text-center mb-4">Update Course</h1>
-          <div className="grid grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 md:gap-12">
             <div>
               <div className="flex flex-col gap-1 py-1">
                 <label htmlFor="title" className="font-semibold text-xl">
@@ -109,7 +109,7 @@ function UpdateCourse() {
                 />
               </div>
               <div className="flex flex-col gap-1 py-1">
-                <label htmlFor="newthumbnail" className="cursor-pointer w-96">
+                <label htmlFor="newthumbnail" className="cursor-pointer w-full">
                   {previewImage ? (
                     <div className="w-full h-80 overflow-hidden border mt-2">
                       <img

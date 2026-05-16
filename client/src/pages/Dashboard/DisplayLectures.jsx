@@ -27,7 +27,7 @@ function DisplayLectures() {
 
   const removeLectureFunc = async (value) => {
     const res = await dispatch(
-      removeLecture({ courseId: state?._id, lectureId: lectures[value]?._id })
+      removeLecture({ courseId: state?._id, lectureId: lectures[value]?._id }),
     );
     if (res?.payload?.success) await getLectures();
   };
@@ -41,8 +41,8 @@ function DisplayLectures() {
       {isLoading ? (
         "Loading"
       ) : lectures && lectures.length > 0 ? (
-        <div className="grid grid-cols-3 min-h-screen justify-center text-white">
-          <div className="col-span-2 px-5">
+        <div className="grid md:grid-cols-3 min-h-screen justify-center text-white">
+          <div className="md:col-span-2 px-5">
             <div className="">
               <video
                 src={lectures[currentLecture]?.lecture?.secure_url}

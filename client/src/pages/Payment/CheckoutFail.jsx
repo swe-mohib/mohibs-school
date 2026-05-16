@@ -8,7 +8,7 @@ function CheckoutFail() {
   return (
     <HomeLayout>
       <div className="flex justify-center items-center min-h-screen">
-        <div className="text-white rounded-lg w-1/4 overflow-hidden shadow-[0_0_10px_black]">
+        <div className="text-white rounded-lg md:w-1/3 w-3/4 overflow-hidden shadow-[0_0_10px_black]">
           <h1 className="bg-red-600 text-center p-7 text-2xl font-bold">
             Payment Failed
           </h1>
