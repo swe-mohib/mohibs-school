@@ -102,31 +102,29 @@ function AdminDashboard() {
   }, []);
   return (
     <HomeLayout>
-      <div className="min-h-screen flex flex-col gap-8 text-white px-4 sm:px-6 lg:px-10 py-6">
+      <div className="page-wrap !pt-8 flex flex-col gap-8 text-slate-900">
         {/* Heading */}
-        <h1 className="text-3xl sm:text-4xl text-center font-bold text-yellow-500">
-          Admin Dashboard
-        </h1>
+        <h1 className="section-title text-center">Admin Dashboard</h1>
 
         {/* Charts Section */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
           {/* Users Chart */}
-          <div className="flex flex-col items-center gap-6 p-4 sm:p-6 shadow-lg rounded-xl bg-zinc-900">
+          <div className="surface flex flex-col items-center gap-6 p-4 sm:p-6">
             <div className="w-full max-w-[280px] sm:max-w-[380px]">
               <Pie data={userData} />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-              <div className="shadow-md rounded-lg flex items-center justify-between p-4 bg-zinc-800">
+              <div className="stat-card flex items-center justify-between">
                 <div className="font-bold">
                   <p className="text-sm sm:text-base">Registered Users</p>
                   <h3 className="text-2xl sm:text-3xl">{allUserCount}</h3>
                 </div>
 
-                <FaUsers className="text-4xl sm:text-5xl text-yellow-500" />
+                <FaUsers className="text-4xl sm:text-5xl text-blue-500" />
               </div>
 
-              <div className="shadow-md rounded-lg flex items-center justify-between p-4 bg-zinc-800">
+              <div className="stat-card flex items-center justify-between">
                 <div className="font-bold">
                   <p className="text-sm sm:text-base">Subscribed Users</p>
                   <h3 className="text-2xl sm:text-3xl">{subscribedCount}</h3>
@@ -138,7 +136,7 @@ function AdminDashboard() {
           </div>
 
           {/* Sales Chart */}
-          <div className="flex flex-col items-center gap-6 p-4 sm:p-6 shadow-lg rounded-xl bg-zinc-900">
+          <div className="surface flex flex-col items-center gap-6 p-4 sm:p-6">
             <div className="w-full h-[300px] sm:h-[400px]">
               <Bar
                 data={salesData}
@@ -150,7 +148,7 @@ function AdminDashboard() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-              <div className="shadow-md rounded-lg flex items-center justify-between p-4 bg-zinc-800">
+              <div className="stat-card flex items-center justify-between">
                 <div className="font-bold">
                   <p className="text-sm sm:text-base">Subscription Count</p>
                   <h3 className="text-2xl sm:text-3xl">
@@ -161,7 +159,7 @@ function AdminDashboard() {
                 <FcSalesPerformance className="text-4xl sm:text-5xl" />
               </div>
 
-              <div className="shadow-md rounded-lg flex items-center justify-between p-4 bg-zinc-800">
+              <div className="stat-card flex items-center justify-between">
                 <div className="font-bold">
                   <p className="text-sm sm:text-base">Total Revenue</p>
                   <h3 className="text-2xl sm:text-3xl">
@@ -177,7 +175,7 @@ function AdminDashboard() {
 
         {/* Table Section */}
         <div className="w-full overflow-x-auto">
-          <div className="flex flex-col gap-5 p-4 sm:p-6 lg:p-8 rounded-xl text-white shadow-lg bg-zinc-900 min-w-max">
+          <div className="surface flex min-w-max flex-col gap-5 p-4 sm:p-6 lg:p-8">
             {/* Header */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <h1 className="text-2xl sm:text-3xl font-semibold">
@@ -188,7 +186,7 @@ function AdminDashboard() {
                 onClick={() => {
                   navigate("/course/create");
                 }}
-                className="bg-yellow-600 hover:bg-yellow-500 transition-all duration-300 rounded-md py-2 px-4 font-semibold text-sm sm:text-lg"
+                className="btn-primary text-sm sm:text-lg"
               >
                 Create new course
               </button>
@@ -197,7 +195,7 @@ function AdminDashboard() {
             {/* Table */}
             <table className="table-auto border-collapse w-full text-left">
               <thead>
-                <tr className="border-b border-gray-700">
+                <tr className="border-b border-slate-200 text-slate-500">
                   <th className="p-3">S. No.</th>
                   <th className="p-3">Course Title</th>
                   <th className="hidden lg:table-cell p-3">Course Category</th>
@@ -213,8 +211,8 @@ function AdminDashboard() {
                   return (
                     <tr
                       key={course._id}
-                      className={`border-b border-gray-800 ${
-                        (idx + 1) % 2 === 0 ? "bg-zinc-800" : ""
+                      className={`border-b border-slate-100 ${
+                        (idx + 1) % 2 === 0 ? "bg-slate-50" : ""
                       }`}
                     >
                       <td className="p-3">{idx + 1}</td>
@@ -223,7 +221,7 @@ function AdminDashboard() {
                         <textarea
                           readOnly
                           value={course.title}
-                          className="bg-transparent resize-none outline-none w-40 sm:w-56"
+                          className="w-40 resize-none bg-transparent font-semibold outline-none sm:w-56"
                         />
                       </td>
 
@@ -243,7 +241,7 @@ function AdminDashboard() {
                         <textarea
                           readOnly
                           value={course.description}
-                          className="w-72 bg-transparent resize-none outline-none"
+                          className="w-72 resize-none bg-transparent text-slate-500 outline-none"
                         />
                       </td>
 

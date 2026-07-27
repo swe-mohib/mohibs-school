@@ -40,10 +40,10 @@ function ChangePassword() {
   };
   return (
     <HomeLayout>
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="page-wrap flex min-h-[calc(100vh-10rem)] justify-center items-center">
         <form
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-center gap-3 w-3/4 md:w-1/3 p-12 rounded-lg text-white shadow-[0_0_10px_black]"
+          className="form-card flex flex-col justify-center gap-4"
         >
           <div className="mb-4 flex justify-between relative items-center">
             <button
@@ -53,44 +53,37 @@ function ChangePassword() {
             >
               <FaArrowLeft />
             </button>
-            <h1 className="text-3xl font-semibold text-center m-auto relative">
+            <h1 className="display-font text-3xl font-semibold text-center m-auto relative">
               Change Password
             </h1>
           </div>
 
-          <div className="flex flex-col gap-1">
-            <label htmlFor="oldPassword" className="font-semibold text-xl">
-              Old Password:
-            </label>
+          <div className="form-field">
+            <label htmlFor="oldPassword">Old Password:</label>
             <input
               type="password"
               name="oldPassword"
               id="oldPassword"
               placeholder="Enter your old password.."
-              className="bg-transparent border px-2 py-1"
+              className=""
               value={data.oldPassword}
               onChange={handleInputChange}
             />
           </div>
 
-          <div className="flex flex-col gap-1">
-            <label htmlFor="newPassword" className="font-semibold text-xl">
-              New Password:
-            </label>
+          <div className="form-field">
+            <label htmlFor="newPassword">New Password:</label>
             <input
               type="password"
               name="newPassword"
               id="newPassword"
               placeholder="Enter your old password.."
-              className="bg-transparent border px-2 py-1"
+              className=""
               value={data.newPassword}
               onChange={handleInputChange}
             />
           </div>
-          <button
-            type="submit"
-            className="w-full text-lg bg-yellow-600 py-2 font-semibold cursor-pointer rounded-sm hover:bg-yellow-400 transition-all ease-in-out duration-300"
-          >
+          <button type="submit" className="btn-primary w-full">
             Change Password
           </button>
         </form>

@@ -78,10 +78,10 @@ function AddLecture() {
 
   return (
     <HomeLayout>
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="page-wrap flex justify-center items-center">
         <form
           onSubmit={handleAddLecture}
-          className="px-14 pb-10 pt-16 my-10 rounded-lg text-white shadow-[0_0_10px_black] relative  w-3/4 md:w-1/3 overflow-hidden"
+          className="surface relative my-6 w-full max-w-xl overflow-hidden px-8 pb-8 pt-16"
         >
           <button
             type="button"
@@ -90,13 +90,15 @@ function AddLecture() {
           >
             <FaArrowLeft />
           </button>
-          <h3 className="text-lg w-full text-center font-semibold bg-yellow-600 inline-block px-2 absolute top-0 right-0">
+          <h3 className="w-full text-center font-semibold bg-blue-600 text-white inline-block px-2 py-3 absolute top-0 right-0">
             {state.title}
           </h3>
-          <h1 className="text-3xl font-bold text-center mb-4">Add Lecture</h1>
+          <h1 className="display-font text-3xl font-bold text-center mb-5">
+            Add lesson
+          </h1>
 
           <div className="flex flex-col gap-1 py-1">
-            <label htmlFor="title" className="font-semibold text-xl">
+            <label htmlFor="title" className="font-semibold">
               Title:
             </label>
             <input
@@ -106,11 +108,11 @@ function AddLecture() {
               placeholder="Enter the lecture's title"
               value={lectureData.title}
               onChange={handleInputChange}
-              className="bg-transparent p-2 border"
+              className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3"
             />
           </div>
           <div className="flex flex-col gap-1 py-1">
-            <label htmlFor="description" className="font-semibold text-xl">
+            <label htmlFor="description" className="font-semibold">
               Description:
             </label>
             <textarea
@@ -120,7 +122,7 @@ function AddLecture() {
               placeholder="Enter the lecture's description"
               value={lectureData.description}
               onChange={handleInputChange}
-              className="bg-transparent p-2 border resize-none h-24"
+              className="h-24 w-full resize-none rounded-lg border border-slate-200 bg-slate-50 p-3"
             />
           </div>
           <div className="flex flex-col gap-1 py-1">
@@ -161,10 +163,7 @@ function AddLecture() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="my-4 w-full bg-yellow-700 rounded-md border p-2 text-xl font-semibold"
-          >
+          <button type="submit" className="btn-primary my-4 w-full">
             Add Lecture
           </button>
         </form>

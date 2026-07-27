@@ -29,7 +29,7 @@ export const buySubscription = createAsyncThunk(
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
-  }
+  },
 );
 
 export const verifySubscription = createAsyncThunk(
@@ -48,7 +48,7 @@ export const verifySubscription = createAsyncThunk(
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
-  }
+  },
 );
 
 export const cancelSubscription = createAsyncThunk(
@@ -69,7 +69,7 @@ export const cancelSubscription = createAsyncThunk(
       console.log(error.response);
       toast.error(error?.response?.data?.message);
     }
-  }
+  },
 );
 
 export const getAllPayments = createAsyncThunk("/allPayments", async () => {

@@ -1,31 +1,26 @@
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
-
 function Footer() {
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
+  const year = new Date().getFullYear();
   return (
-    <>
-      <footer className="relative left-0 bottom-0 h-[10vh] bg-gray-800 py-5 text-white flex flex-col items-center justify-between sm:flex-row sm:px-20">
-        <section className="text-lg">
-          Copyright {year} | All right reserved.
-        </section>
-        <section className="flex items-center justify-center gap-5 text-2xl text-white">
-          <a className="hover:text-yellow-500 transition-all ease-in-out duration-300">
+    <footer className="border-t border-slate-200 bg-white">
+      <div className="mx-auto flex w-[min(1180px,calc(100%-2rem))] flex-col items-center justify-between gap-4 py-6 text-sm text-slate-500 sm:flex-row">
+        <p>© {year} LearnSphere. Made for curious minds.</p>
+        <div className="flex gap-4 text-lg text-slate-400">
+          <a href="#" aria-label="Facebook" className="hover:text-blue-600">
             <BsFacebook />
           </a>
-          <a className="hover:text-yellow-500 transition-all ease-in-out duration-300">
+          <a href="#" aria-label="Instagram" className="hover:text-blue-600">
             <BsInstagram />
           </a>
-          <a className="hover:text-yellow-500 transition-all ease-in-out duration-300">
+          <a href="#" aria-label="LinkedIn" className="hover:text-blue-600">
             <BsLinkedin />
           </a>
-          <a className="hover:text-yellow-500 transition-all ease-in-out duration-300">
+          <a href="#" aria-label="Twitter" className="hover:text-blue-600">
             <BsTwitter />
           </a>
-        </section>
-      </footer>
-    </>
+        </div>
+      </div>
+    </footer>
   );
 }
-
 export default Footer;

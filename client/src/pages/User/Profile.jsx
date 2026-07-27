@@ -1,98 +1,117 @@
 import { useEffect } from "react";
+import { FiCreditCard, FiEdit3, FiKey, FiShield } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import HomeLayout from "../../layout/HomeLayout";
 import { getUserData } from "../../store/slices/authSlice";
 import { cancelSubscription } from "../../store/slices/razorpaySlice";
-
 function User() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.auth);
+  const { data } = useSelector((s) => s.auth);
   const { avatar, fullName, email, role, subscription } = data;
-
   useEffect(() => {
     dispatch(getUserData());
-  }, []);
-
-  const handleCancleSubscription = async (e) => {
-    e.preventDefault();
+  }, [dispatch]);
+  const cancel = async () => {
     await dispatch(cancelSubscription());
     await dispatch(getUserData());
   };
+  const active = subscription?.status === "active";
   return (
     <HomeLayout>
-      <div className="min-h-screen flex justify-center items-center">
-        <div className="flex flex-col justify-center gap-3 p-12 rounded-lg text-white w-3/4  md:w-1/3 shadow-[0_0_10px_black]">
-          <img
-            src={avatar.secure_url}
-            alt="profile_image"
-            className="w-40 h-40 rounded-full m-auto border-2"
-          />
-          <h3 className="text-center text-2xl font-semibold capitalize">
-            {fullName}
-          </h3>
-          <div className="grid grid-cols-2 gap-1">
-            <p>Email</p>
-            <p>: {email}</p>
-            <p>Role</p>
-            <p>: {role}</p>
-            <p>Subscription</p>
-            <p>
-              :{" "}
-              {subscription?.status === "active"
-                ? subscription.status
-                : "Not Subscribed"}
+      <div className="page-wrap">
+        <span className="eyebrow">Your account</span>
+        <div className="mt-5 grid gap-6 lg:grid-cols-[.8fr_1.2fr]">
+          <aside className="surface p-7 text-center">
+            <img
+              src={avatar?.secure_url}
+              alt="Profile"
+              className="mx-auto h-28 w-28 rounded-full border-4 border-blue-50 object-cover"
+            />
+            <h1 className="display-font mt-4 text-3xl font-bold capitalize">
+              {fullName}
+            </h1>
+            <p className="mt-1 text-sm text-slate-500">{email}</p>
+            <span className="mt-5 inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600">
+              {role}
+            </span>
+            <div className="mt-7 grid gap-2">
+              <Link
+                to="/user/editprofile"
+                className="btn-secondary flex items-center justify-center gap-2"
+              >
+                <FiEdit3 /> Edit profile
+              </Link>
+              <Link
+                to="/changepassword"
+                className="btn-secondary flex items-center justify-center gap-2"
+              >
+                <FiKey /> Change password
+              </Link>
+            </div>
+          </aside>
+          <section className="surface p-7">
+            <h2 className="text-xl font-bold">Learning access</h2>
+            <p className="mt-1 text-sm text-slate-500">
+              Manage your course subscription and access.
             </p>
-            <p>Subscription Id</p>
-            <p>
-              :{" "}
-              {subscription?.status === "active"
-                ? subscription.id
-                : "Not Subscribed"}
-            </p>
-          </div>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2">
-            <Link
-              to={"/changepassword"}
-              className="md:w-1/2 w-full text-center bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 rounded-sm py-2 mt-2 font-semibold text-lg cursor-pointer"
-            >
-              Change Password
-            </Link>
-            <Link
-              to={"/user/editprofile"}
-              className="md:w-1/2 w-full text-center bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 rounded-sm py-2 mt-2 font-semibold text-lg cursor-pointer"
-            >
-              Edit Profile
-            </Link>
-          </div>
-          {subscription?.status === "active" ? (
-            <button
-              onClick={handleCancleSubscription}
-              className="bg-red-600 hover:bg-red-400 transition-all ease-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
-            >
-              Cancel Subscription
-            </button>
-          ) : role !== "ADMIN" ? (
-            <button
-              onClick={() => navigate("/payment/checkout")}
-              className="bg-red-600 hover:bg-red-400 transition-all ease-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
-            >
-              Buy Subscription
-            </button>
-          ) : (
-            <button
-              onClick={() => navigate("/admin/dashboard")}
-              className="bg-blue-600 hover:bg-blue-400 transition-all ease-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
-            >
-              Go to Admin Dashboard
-            </button>
-          )}
+            <div className="mt-6 rounded-xl border border-slate-100 bg-slate-50 p-5">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-lg bg-blue-100 text-blue-600">
+                    <FiCreditCard />
+                  </span>
+                  <div>
+                    <p className="font-bold">All-access membership</p>
+                    <p className="mt-1 text-sm text-slate-500">
+                      {active
+                        ? "Active — all courses unlocked"
+                        : "Not currently active"}
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-bold ${active ? "bg-emerald-100 text-emerald-700" : "bg-slate-200 text-slate-600"}`}
+                >
+                  {active ? "Active" : "Inactive"}
+                </span>
+              </div>
+              {subscription?.id && (
+                <p className="mt-4 text-xs text-slate-400">
+                  Subscription ID: {subscription.id}
+                </p>
+              )}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {active ? (
+                <button
+                  onClick={cancel}
+                  className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-bold text-rose-600"
+                >
+                  Cancel membership
+                </button>
+              ) : role !== "ADMIN" ? (
+                <button
+                  onClick={() => navigate("/payment/checkout")}
+                  className="btn-primary"
+                >
+                  Unlock all courses
+                </button>
+              ) : (
+                <button
+                  onClick={() => navigate("/admin/dashboard")}
+                  className="btn-primary flex items-center gap-2"
+                >
+                  <FiShield /> Open admin dashboard
+                </button>
+              )}
+            </div>
+          </section>
         </div>
       </div>
     </HomeLayout>
   );
 }
-
 export default User;

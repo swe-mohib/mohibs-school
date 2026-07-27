@@ -56,20 +56,26 @@ function Contact() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center h-[100vh]">
+      <div className="page-wrap flex min-h-[calc(100vh-10rem)] items-center justify-center">
         <form
           noValidate
           onSubmit={onFormSubmit}
-          className="flex flex-col items-center justify-center gap-2 p-5 rounded-md text-white shadow-[0_0_10px_black] w-[22rem]"
+          className="form-card flex flex-col items-center justify-center gap-4"
         >
-          <h1 className="text-3xl font-semibold">Contact Form</h1>
+          <div className="w-full">
+            <span className="eyebrow">We’re here to help</span>
+            <h1 className="display-font mt-3 text-3xl font-bold">
+              Get in touch
+            </h1>
+            <p className="mt-2 text-sm text-slate-500">
+              Send us a message and we’ll get back to you.
+            </p>
+          </div>
 
-          <div className="flex flex-col w-full gap-1">
-            <label htmlFor="name" className="text-xl font-semibold">
-              Name
-            </label>
+          <div className="form-field w-full">
+            <label htmlFor="name">Name</label>
             <input
-              className="bg-transparent border px-2 py-1 rounded-sm"
+              className=""
               id="name"
               type="text"
               name="name"
@@ -79,12 +85,10 @@ function Contact() {
             />
           </div>
 
-          <div className="flex flex-col w-full gap-1">
-            <label htmlFor="email" className="text-xl font-semibold">
-              Email
-            </label>
+          <div className="form-field w-full">
+            <label htmlFor="email">Email</label>
             <input
-              className="bg-transparent border px-2 py-1 rounded-sm"
+              className=""
               id="email"
               type="email"
               name="email"
@@ -94,23 +98,18 @@ function Contact() {
             />
           </div>
 
-          <div className="flex flex-col w-full gap-1">
-            <label htmlFor="message" className="text-xl font-semibold">
-              Message
-            </label>
+          <div className="form-field w-full">
+            <label htmlFor="message">Message</label>
             <textarea
-              className="bg-transparent border px-2 py-1 rounded-sm resize-none h-40"
+              className=""
               id="message"
               name="message"
-              placeholder="Enter your email"
+              placeholder="Enter your message"
               onChange={handleInputChange}
               value={userInput.message}
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
-          >
+          <button type="submit" className="btn-primary w-full">
             Submit
           </button>
         </form>

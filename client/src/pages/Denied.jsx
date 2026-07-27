@@ -19,19 +19,16 @@ function Denied() {
     return () => clearInterval(intervalId);
   }, [countdown, navigate]);
   return (
-    <main className="h-screen w-full flex flex-col justify-center items-center ">
+    <main className="app-shell h-screen w-full flex flex-col justify-center items-center text-slate-700">
       <div className="flex justify-center items-center ">
-        <h1 className="font-extrabold text-9xl text-white tracking-widest">
+        <h1 className="font-extrabold text-9xl text-slate-900 tracking-widest">
           403
         </h1>
-        <p className="bg-yellow-500 text-white px-2 rounded mt-5 text-sm absolute rotate-12">
+        <p className="bg-rose-500 text-white px-3 py-1 rounded mt-5 text-sm absolute rotate-12">
           Access Denied
         </p>
       </div>
-      <button
-        className="mt-5 text-white border border-yellow-500 px-5 py-3 rounded-md text-lg cursor-pointer hover:bg-yellow-600 active:bg-yellow-900 transition-all ease-in-out duration-300"
-        onClick={() => navigate(-1)}
-      >
+      <button className="btn-primary mt-5" onClick={() => navigate(-1)}>
         Go Back
       </button>
       <p>

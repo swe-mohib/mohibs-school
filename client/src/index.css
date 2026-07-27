@@ -1,9 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-    margin: auto;
-    max-width: 1440px;
-    position: relative;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    background: #f6f8fc;
+  }
+  body {
+    margin: 0;
+    min-width: 320px;
+    color: #14213d;
+    font-family: "DM Sans", sans-serif;
+  }
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .app-shell {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 92% -5%, #d9edff 0, transparent 28rem), #f6f8fc;
+  }
+  .page-wrap {
+    width: min(1180px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 3rem 0 4.5rem;
+  }
+  .display-font {
+    font-family: "Playfair Display", serif;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1677ff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.5rem;
+    height: 2px;
+    background: currentColor;
+  }
+  .section-title {
+    font-family: "Playfair Display", serif;
+    color: #14213d;
+    font-size: clamp(2rem, 4vw, 3.35rem);
+    line-height: 1.05;
+    font-weight: 700;
+  }
+  .surface {
+    border: 1px solid #e5ebf5;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 14px 45px rgba(35, 63, 105, 0.08);
+  }
+  .form-card {
+    width: min(100%, 29rem);
+    padding: 2rem;
+    border: 1px solid #e5ebf5;
+    border-radius: 1.25rem;
+    background: #fff;
+    box-shadow: 0 18px 50px rgba(35, 63, 105, 0.12);
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    color: #36445e;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    border: 1px solid #d9e2f0;
+    border-radius: 0.7rem;
+    background: #f9fbff;
+    padding: 0.75rem 0.9rem;
+    color: #14213d;
+    outline: none;
+    transition: 0.2s;
+  }
+  .form-field textarea {
+    min-height: 7rem;
+    resize: vertical;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: #1677ff;
+    box-shadow: 0 0 0 3px #1677ff1c;
+  }
+  .btn-primary {
+    border-radius: 0.7rem;
+    background: #1677ff;
+    color: white;
+    padding: 0.78rem 1.15rem;
+    font-weight: 700;
+    box-shadow: 0 8px 18px #1677ff33;
+    transition: 0.2s;
+  }
+  .btn-primary:hover {
+    background: #0964e0;
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    border: 1px solid #d9e2f0;
+    border-radius: 0.7rem;
+    background: white;
+    color: #1d3d70;
+    padding: 0.78rem 1.15rem;
+    font-weight: 700;
+    transition: 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: #1677ff;
+    color: #1677ff;
+  }
+  .stat-card {
+    border: 1px solid #e5ebf5;
+    border-radius: 1rem;
+    padding: 1.1rem;
+    background: #fff;
+  }
+  .theme-toggle {
+    display: grid;
+    height: 2.25rem;
+    width: 2.25rem;
+    place-items: center;
+    border: 1px solid #d9e2f0;
+    border-radius: 0.7rem;
+    background: white;
+    color: #47607f;
+    transition: 0.2s;
+  }
+  .theme-toggle:hover {
+    border-color: #1677ff;
+    color: #1677ff;
+  }
+}
+
+/* Keeps the remaining account-management screens visually consistent while they
+   share the original field markup. */
+.app-shell form[class*="shadow-"] {
+  background: #fff;
+  color: #14213d !important;
+  border: 1px solid #e5ebf5;
+  box-shadow: 0 18px 50px rgba(35, 63, 105, 0.12) !important;
+  border-radius: 1.25rem !important;
+}
+.app-shell form[class*="shadow-"] input,
+.app-shell form[class*="shadow-"] textarea {
+  background: #f9fbff !important;
+  border-color: #d9e2f0 !important;
+  border-radius: 0.6rem;
+  color: #14213d !important;
+}
+.app-shell form[class*="shadow-"] h1,
+.app-shell form[class*="shadow-"] h3 {
+  color: #14213d !important;
+}
+
+html.dark {
+  background: #0d1424;
+}
+.dark body {
+  color: #e8eef9;
+}
+.dark .app-shell {
+  background:
+    radial-gradient(circle at 92% -5%, #173764 0, transparent 28rem), #0d1424;
+}
+.dark header,
+.dark footer,
+.dark .bg-white,
+.dark .bg-white\/85 {
+  background-color: #101a2d !important;
+}
+.dark .surface,
+.dark .form-card,
+.dark .stat-card,
+.dark .app-shell form[class*="shadow-"] {
+  background: #152238 !important;
+  border-color: #263955 !important;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25) !important;
+}
+.dark .form-field {
+  color: #cbd8ec;
+}
+.dark .form-field input,
+.dark .form-field textarea,
+.dark .app-shell form[class*="shadow-"] input,
+.dark .app-shell form[class*="shadow-"] textarea {
+  background: #0f1a2c !important;
+  border-color: #304765 !important;
+  color: #eef4ff !important;
+}
+.dark .section-title,
+.dark .app-shell form[class*="shadow-"] h1,
+.dark .app-shell form[class*="shadow-"] h3,
+.dark .text-slate-900,
+.dark .text-slate-700 {
+  color: #f1f5fb !important;
+}
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark .text-slate-400 {
+  color: #aabbd3 !important;
+}
+.dark .bg-slate-50,
+.dark .hover\:bg-slate-50:hover {
+  background-color: #1a2a43 !important;
+}
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-200\/80 {
+  border-color: #263955 !important;
+}
+.dark .btn-secondary,
+.dark .theme-toggle {
+  background: #1a2a43;
+  border-color: #304765;
+  color: #dce8fb;
+}
+.dark .bg-blue-50 {
+  background-color: #19345c !important;
 }

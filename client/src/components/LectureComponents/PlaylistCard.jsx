@@ -1,5 +1,5 @@
-import { MdDelete } from "react-icons/md";
-
+/* eslint-disable react/prop-types */
+import { FiPlay, FiTrash2 } from "react-icons/fi";
 function PlaylistCard({
   data,
   count,
@@ -8,35 +8,41 @@ function PlaylistCard({
   playLecture,
   removeLectureFunc,
 }) {
-  const { title, description } = data;
+  const active = selectedIndex === count;
   return (
-    <div className="flex my-2 rounded-xl overflow-hidden">
-      <div
-        className={`${
-          selectedIndex === count ? "bg-blue-600" : "bg-blue-900"
-        } cursor-pointer p-2`}
+    <div
+      className={`group mb-2 flex overflow-hidden rounded-xl border transition ${active ? "border-blue-200 bg-blue-50" : "border-transparent hover:bg-slate-50"}`}
+    >
+      <button
         onClick={playLecture}
+        className="flex min-w-0 flex-1 items-center gap-3 p-3 text-left"
       >
-        <p>Lecture: {count}</p>
-        <h3
-          className={`${
-            selectedIndex === count ? "text-yellow-300" : ""
-          } text-lg font-semibold`}
+        <span
+          className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs ${active ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"}`}
         >
-          {title}
-        </h3>
-        <p className="line-clamp-2 text-sm">{description}</p>
-      </div>
-      {role && role === "ADMIN" && (
+          <FiPlay />
+        </span>
+        <span className="min-w-0">
+          <span
+            className={`block truncate text-sm font-bold ${active ? "text-blue-700" : "text-slate-700"}`}
+          >
+            {count}. {data.title}
+          </span>
+          <span className="mt-1 block truncate text-xs text-slate-500">
+            {data.description}
+          </span>
+        </span>
+      </button>
+      {role === "ADMIN" && (
         <button
           onClick={removeLectureFunc}
-          className="text-3xl px-3 bg-red-500 hover:bg-red-600 active:text-black transition-all ease-in-out duration-300"
+          className="px-3 text-slate-400 hover:bg-rose-50 hover:text-rose-600"
+          aria-label="Delete lesson"
         >
-          <MdDelete />
+          <FiTrash2 />
         </button>
       )}
     </div>
   );
 }
-
 export default PlaylistCard;

@@ -7,28 +7,30 @@ function CheckoutSuccess() {
   const navigate = useNavigate();
   return (
     <HomeLayout>
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="text-white rounded-lg md:w-1/3 w-3/4 overflow-hidden shadow-[0_0_10px_black]">
-          <h1 className="bg-green-600 text-center p-7 text-2xl font-bold">
-            Payment Successfull
-          </h1>
-          <div className="h-72 flex flex-col gap-9 justify-center items-center text-center">
+      <div className="page-wrap flex min-h-[calc(100vh-10rem)] justify-center items-center">
+        <div className="surface w-full max-w-md overflow-hidden text-center">
+          <div className="bg-emerald-500 p-7 text-white">
+            <h1 className="text-2xl font-bold">Payment successful</h1>
+            <p className="mt-1 text-sm text-emerald-50">
+              Your membership is active.
+            </p>
+          </div>
+          <div className="flex h-72 flex-col gap-7 justify-center items-center text-center">
             {/* <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. In autem
               libero sint.
             </p> */}
             <div className="space-y-2">
-              <h2 className="text-lg font-semibold">
+              <h2 className="text-lg font-semibold text-slate-900">
                 Welcome to the pro bundle
               </h2>
-              <p>Now you can enjoy all the courses.</p>
+              <p className="text-slate-500">You can now enjoy every course.</p>
             </div>
             <FaCheckCircle className="text-7xl text-green-600" />
           </div>
           <button
             onClick={() => navigate("/")}
-            className="text-center w-full p-2
-            bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 font-semibold text-xl cursor-pointer"
+            className="btn-primary m-6 mt-0 w-[calc(100%-3rem)]"
           >
             Go to Homepage
           </button>

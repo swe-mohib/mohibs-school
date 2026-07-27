@@ -6,13 +6,12 @@ import HomeLayout from "../layout/HomeLayout";
 function AboutUs() {
   return (
     <HomeLayout>
-      <div className="flex flex-col justify-center items-center space-y-20 text-white py-20">
-        <div className="flex justify-center items-center gap-10 mx-10">
-          <section className="w-1/2 space-y-6">
-            <h1 className="text-5xl font-bold text-yellow-500">
-              Affordable and quality education
-            </h1>
-            <p className="text-gray-200 text-xl">
+      <div className="page-wrap flex flex-col justify-center items-center space-y-16">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-10">
+          <section className="w-full md:w-1/2 space-y-6">
+            <span className="eyebrow">Our mission</span>
+            <h1 className="section-title">Affordable and quality education</h1>
+            <p className="text-slate-600 text-lg leading-8">
               Our goal is to provide the afoordable and quality education to the
               world. We are providing the platform for the aspiring teachers and
               students to share their skills, creativity and knowledge to each
@@ -20,17 +19,17 @@ function AboutUs() {
               mankind.
             </p>
           </section>
-          <div className="w-1/2 flex justify-center items-center">
+          <div className="w-full md:w-1/2 flex justify-center items-center">
             <img
               src={aboutUsImg}
               alt="About Us Image"
-              className="w-[80%] rounded-3xl"
+              className="w-[80%] rounded-3xl shadow-xl"
             />
           </div>
         </div>
 
         {/* Carousel */}
-        <div className="carousel w-2/3">
+        <div className="carousel w-full md:w-2/3 rounded-2xl shadow-lg">
           {CelebretyData &&
             CelebretyData.map((celebrety) => (
               <CarouselSlide

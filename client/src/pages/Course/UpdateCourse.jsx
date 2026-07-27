@@ -86,16 +86,16 @@ function UpdateCourse() {
 
   return (
     <HomeLayout>
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="page-wrap flex justify-center items-center">
         <form
           onSubmit={handleUpdateCourse}
-          className="px-14 py-5 rounded-lg text-white shadow-[0_0_10px_black]  w-3/4 md:w-fit"
+          className="surface w-full max-w-4xl px-6 py-7 md:px-10"
         >
-          <h1 className="text-3xl font-bold text-center mb-4">Update Course</h1>
+          <h1 className="section-title text-center mb-6">Update course</h1>
           <div className="grid md:grid-cols-2 md:gap-12">
             <div>
               <div className="flex flex-col gap-1 py-1">
-                <label htmlFor="title" className="font-semibold text-xl">
+                <label htmlFor="title" className="font-semibold">
                   Title:
                 </label>
                 <input
@@ -105,7 +105,7 @@ function UpdateCourse() {
                   placeholder="Enter the course title"
                   value={courseData.title}
                   onChange={handleInputChange}
-                  className="bg-transparent p-2 border"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3"
                 />
               </div>
               <div className="flex flex-col gap-1 py-1">
@@ -137,7 +137,7 @@ function UpdateCourse() {
             </div>
             <div>
               <div className="flex flex-col gap-1 py-1">
-                <label htmlFor="category" className="font-semibold text-xl">
+                <label htmlFor="category" className="font-semibold">
                   Category:
                 </label>
                 <input
@@ -147,11 +147,11 @@ function UpdateCourse() {
                   placeholder="Enter the course category"
                   value={courseData.category}
                   onChange={handleInputChange}
-                  className="bg-transparent p-2 border"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3"
                 />
               </div>
               <div className="flex flex-col gap-1 py-1">
-                <label htmlFor="title" className="font-semibold text-xl">
+                <label htmlFor="title" className="font-semibold">
                   Created By:
                 </label>
                 <input
@@ -161,11 +161,11 @@ function UpdateCourse() {
                   placeholder="Enter the course instructor"
                   value={courseData.createdBy}
                   onChange={handleInputChange}
-                  className="bg-transparent p-2 border"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3"
                 />
               </div>
               <div className="flex flex-col gap-1 py-1">
-                <label htmlFor="description" className="font-semibold text-xl">
+                <label htmlFor="description" className="font-semibold">
                   Description:
                 </label>
                 <textarea
@@ -175,14 +175,11 @@ function UpdateCourse() {
                   placeholder="Enter the course description"
                   value={courseData.description}
                   onChange={handleInputChange}
-                  className="bg-transparent p-2 border resize-none h-40"
+                  className="h-40 w-full resize-none rounded-lg border border-slate-200 bg-slate-50 p-3"
                 />
               </div>
 
-              <button
-                type="submit"
-                className="my-4 w-full bg-yellow-700 rounded-md border p-2 text-xl font-semibold"
-              >
+              <button type="submit" className="btn-primary my-4 w-full">
                 Update Course
               </button>
             </div>

@@ -78,10 +78,10 @@ function EditProfile() {
   };
   return (
     <HomeLayout>
-      <div className="min-h-screen flex  justify-center items-center">
+      <div className="page-wrap min-h-[calc(100vh-10rem)] flex justify-center items-center">
         <form
           onSubmit={handleUpdateForm}
-          className="flex flex-col justify-center gap-3 p-12 rounded-lg text-white w-3/4 md:w-1/3 shadow-[0_0_10px_black]"
+          className="form-card flex flex-col justify-center gap-4"
         >
           <div className="mb-4 flex justify-between relative items-center">
             <button
@@ -91,11 +91,11 @@ function EditProfile() {
             >
               <FaArrowLeft />
             </button>
-            <h1 className="text-3xl font-semibold text-center m-auto relative">
+            <h1 className="display-font text-3xl font-semibold text-center m-auto relative">
               Edit Profile
             </h1>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="form-field">
             <label htmlFor="avatar" className="cursor-pointer">
               {updateProfileData.previewImage ? (
                 <img
@@ -116,24 +116,19 @@ function EditProfile() {
               accept=".png,.jpg,.jpeg,.svg "
             />
           </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="fullName" className="font-semibold text-xl">
-              Name:
-            </label>
+          <div className="form-field">
+            <label htmlFor="fullName">Name:</label>
             <input
               type="text"
               placeholder="Enter you full name..."
               name="fullName"
               id="fullName"
-              className="bg-transparent border px-2 py-1"
+              className=""
               value={updateProfileData.fullName}
               onChange={handleInputChange}
             />
           </div>
-          <button
-            type="submit"
-            className="bg-yellow-600 hover:bg-yellow-400 transition-all ease-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
-          >
+          <button type="submit" className="btn-primary">
             Submit
           </button>
         </form>

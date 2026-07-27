@@ -15,7 +15,6 @@ import DisplayLectures from "./pages/Dashboard/DisplayLectures";
 import Denied from "./pages/Denied";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
-import LoginBypass from "./pages/LoginBypass";
 import PageNotFound from "./pages/PageNotFound";
 import Checkout from "./pages/Payment/Checkout";
 import CheckoutFail from "./pages/Payment/CheckoutFail";
@@ -40,7 +39,6 @@ function App() {
 
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/a/:loginBypass" element={<LoginBypass />} />
         <Route path="/changepassword" element={<ChangePassword />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
