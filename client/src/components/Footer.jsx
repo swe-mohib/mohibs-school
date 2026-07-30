@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto flex w-[min(1180px,calc(100%-2rem))] flex-col items-center justify-between gap-4 py-6 text-sm text-slate-500 sm:flex-row">
-        <p>© {year} LearnSphere. Made for curious minds.</p>
+        <p>© {year} MohibsSchool. Made for curious minds.</p>
         <div className="flex gap-4 text-lg text-slate-400">
           <a href="#" aria-label="Facebook" className="hover:text-blue-600">
             <BsFacebook />

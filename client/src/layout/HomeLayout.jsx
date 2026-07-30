@@ -40,7 +40,7 @@ function HomeLayout({ children }) {
             <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue-600 text-white">
               <FiBookOpen />
             </span>
-            Learn<span className="text-blue-600">Sphere</span>
+            Mohibs<span className="text-blue-600">School</span>
           </Link>
           <nav className="hidden items-center gap-7 text-sm md:flex">
             <NavLink className={navClass} to="/">
