@@ -19,13 +19,13 @@ app.use(
   cors({
     origin: [process.env.FRONTEND_URL],
     credentials: true,
-  })
+  }),
 );
 app.use(cookieParser());
 app.use(morgan("dev"));
 
 // Server status check route
-app.get("/health", (_req, res) => {
+app.get("/api/health", (_req, res) => {
   if (mongoose.connection.readyState !== 1) {
     return res.status(503).json({ status: "unavailable" });
   }
