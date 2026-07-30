@@ -34,6 +34,6 @@ export const deleteFolderWithContentsOnCloudinary = async (folder) => {
     // Finally deleting the folder
     await cloudinary.api.delete_folder(folder);
   } catch (error) {
-    throw new Error("Error deleting files:", error.message);
+    throw new Error(`Error deleting files: ${error.message}`);
   }
 };

@@ -67,9 +67,7 @@ function CreateCourse() {
     formData.append("thumbnail", courseData.thumbnail);
 
     // dispatch create course action
-    console.log(courseData);
     const res = await dispacth(createCourse(formData));
-    console.log(res);
     if (res?.payload?.success) {
       setCourseData({
         title: "",

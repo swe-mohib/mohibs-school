@@ -65,8 +65,6 @@ export const cancelSubscription = createAsyncThunk(
       });
       return (await res).data;
     } catch (error) {
-      console.log(error);
-      console.log(error.response);
       toast.error(error?.response?.data?.message);
     }
   },

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,15 +17,15 @@ function DisplayLectures() {
   const { role } = useSelector((s) => s.auth);
   const [isLoading, setIsLoading] = useState(true);
   const [currentLecture, setCurrentLecture] = useState(0);
-  const getLectures = async () => {
+  const getLectures = useCallback(async () => {
     if (!state) return;
     await dispatch(getCourseLectures(state._id));
     setIsLoading(false);
-  };
+  }, [dispatch, state]);
   useEffect(() => {
     if (!state) navigate("/courses");
     else getLectures();
-  }, [state, navigate]);
+  }, [getLectures, navigate, state]);
   const remove = async (idx) => {
     const res = await dispatch(
       removeLecture({ courseId: state._id, lectureId: lectures[idx]._id }),

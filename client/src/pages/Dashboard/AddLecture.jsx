@@ -13,7 +13,7 @@ function AddLecture() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [lectureData, setLectureData] = useState({
-    courseId: state._id,
+    courseId: state?._id,
     title: "",
     description: "",
     lecture: "",
@@ -72,9 +72,8 @@ function AddLecture() {
   };
 
   useEffect(() => {
-    console.log(state);
     if (!state) navigate("/courses");
-  }, []);
+  }, [navigate, state]);
 
   return (
     <HomeLayout>
@@ -91,7 +90,7 @@ function AddLecture() {
             <FaArrowLeft />
           </button>
           <h3 className="w-full text-center font-semibold bg-blue-600 text-white inline-block px-2 py-3 absolute top-0 right-0">
-            {state.title}
+            {state?.title}
           </h3>
           <h1 className="display-font text-3xl font-bold text-center mb-5">
             Add lesson

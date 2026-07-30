@@ -20,8 +20,24 @@ export const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_SECRET,
 });
 
-app.listen(PORT, async () => {
-  // Db connection
-  connectToDb();
-  console.log(`App is live at http://${HOSTNAME}:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectToDb();
+    const server = app.listen(PORT, () => {
+      console.log(`App is live at http://${HOSTNAME || "0.0.0.0"}:${PORT}`);
+    });
+
+    const shutdown = (signal) => {
+      console.log(`${signal} received; shutting down gracefully`);
+      server.close(() => process.exit(0));
+    };
+
+    process.on("SIGTERM", () => shutdown("SIGTERM"));
+    process.on("SIGINT", () => shutdown("SIGINT"));
+  } catch (error) {
+    console.error("Unable to start server:", error.message);
+    process.exit(1);
+  }
+};
+
+startServer();

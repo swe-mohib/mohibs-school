@@ -7,6 +7,12 @@ import {
 } from "../utils/cloudinary.util.js";
 import fs from "fs/promises";
 
+const removeTemporaryUpload = async (file) => {
+  if (file?.path) {
+    await fs.rm(file.path, { force: true });
+  }
+};
+
 /**
  * @CREATE_COURSE
  * @ROUTE @POST {{URL}}/api/v1/courses/
@@ -71,7 +77,7 @@ export const createCourse = async (req, res, next) => {
     // Saving in DB
     await course.save();
 
-    fs.rm(thumbnail.path);
+    await removeTemporaryUpload(thumbnail);
 
     res.status(200).json({
       success: true,
@@ -79,7 +85,7 @@ export const createCourse = async (req, res, next) => {
       course,
     });
   } catch (error) {
-    fs.rm(thumbnail.path);
+    await removeTemporaryUpload(thumbnail);
     return next(new AppError(500, error.message));
   }
 };
@@ -133,12 +139,11 @@ export const addLectureToCourseById = async (req, res, next) => {
     }
 
     const option = {
-      folder: `lms/courses/${course.title}`,
+      folder: course.thumbnail.folder,
       resource_type: "video",
     };
     // Upload file on cloudinary
     const result = await uploadOnCloudinary(lecture.path, option);
-    // console.log(result)
     if (!result) {
       throw new Error("Server Error!");
     }
@@ -157,7 +162,7 @@ export const addLectureToCourseById = async (req, res, next) => {
     course.numberOfLectures = course.lectures.length;
 
     await course.save();
-    fs.rm(lecture.path);
+    await removeTemporaryUpload(lecture);
 
     res.status(200).json({
       success: true,
@@ -165,7 +170,7 @@ export const addLectureToCourseById = async (req, res, next) => {
       course,
     });
   } catch (error) {
-    fs.rm(lecture.path);
+    await removeTemporaryUpload(lecture);
     return next(new AppError(400, error.message));
   }
 };
@@ -200,32 +205,25 @@ export const getLecturesByCourseId = async (req, res, next) => {
  */
 export const updateCourseById = async (req, res, next) => {
   const thumbnail = req.file;
-  const { title } = req.body;
   try {
-    // If title throw error
-    if (title) {
-      throw new Error("Title can't modified");
-    }
-
-    // Take Id from URL
     const { id } = req.params;
-
-    // Check course existance and update
-    const course = await Course.findByIdAndUpdate(
-      id,
-      { $set: req.body },
-      { runValidators: true }
-    );
+    const course = await Course.findById(id);
     if (!course) {
       throw new Error("Course Doesn't exist !");
     }
-    console.log("for debug");
+
+    const allowedFields = ["title", "description", "category", "createdBy"];
+    for (const field of allowedFields) {
+      if (req.body[field] !== undefined) {
+        course[field] = req.body[field];
+      }
+    }
 
     // Updating thumbnail of the course, if thumbnail is there
     if (thumbnail) {
       // Transformation option for cloudinary
       const option = {
-        folder: `lms/courses/${course.title}`,
+        folder: course.thumbnail.folder,
         width: 250,
         height: 250,
         crop: "fill",
@@ -244,7 +242,7 @@ export const updateCourseById = async (req, res, next) => {
       course.thumbnail.secure_url = result.secure_url;
 
       // Deleting the local file
-      fs.rm(thumbnail.path);
+      await removeTemporaryUpload(thumbnail);
     }
 
     // Saving details in DB
@@ -256,7 +254,7 @@ export const updateCourseById = async (req, res, next) => {
     });
   } catch (error) {
     if (thumbnail) {
-      fs.rm(thumbnail.path);
+      await removeTemporaryUpload(thumbnail);
     }
     return next(new AppError(400, error.message));
   }

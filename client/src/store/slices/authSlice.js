@@ -164,11 +164,11 @@ const authSlice = createSlice({
     builder
       .addCase(createAccount.fulfilled, (state, action) => {
         if (!action?.payload?.success) return;
-        console.log(action);
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("role", action?.payload?.user?.role);
         localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-        ((state.isLoggedIn = true), (state.role = action?.payload?.user?.role));
+        state.isLoggedIn = true;
+        state.role = action?.payload?.user?.role;
         state.data = action?.payload?.user;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -176,13 +176,15 @@ const authSlice = createSlice({
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("role", action?.payload?.user?.role);
         localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-        ((state.isLoggedIn = true), (state.role = action?.payload?.user?.role));
+        state.isLoggedIn = true;
+        state.role = action?.payload?.user?.role;
         state.data = action?.payload?.user;
       })
       .addCase(logout.fulfilled, (state, action) => {
         if (!action?.payload?.success) return;
         localStorage.clear();
-        ((state.isLoggedIn = false), (state.role = ""));
+        state.isLoggedIn = false;
+        state.role = "";
         state.data = {};
       })
       .addCase(getUserData.fulfilled, (state, action) => {
@@ -190,7 +192,8 @@ const authSlice = createSlice({
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("role", action?.payload?.user?.role);
         localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-        ((state.isLoggedIn = true), (state.role = action?.payload?.user?.role));
+        state.isLoggedIn = true;
+        state.role = action?.payload?.user?.role;
         state.data = action?.payload?.user;
       });
   },

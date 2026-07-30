@@ -12,7 +12,8 @@ function UpdateCourse() {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  const { _id, title, description, category, createdBy, thumbnail } = state;
+  const { _id, title, description, category, createdBy, thumbnail } =
+    state || {};
 
   const [previewImage, setPreviewImage] = useState(thumbnail?.secure_url);
   const [courseData, setCourseData] = useState({
@@ -21,7 +22,7 @@ function UpdateCourse() {
     description: description,
     category: category,
     createdBy: createdBy,
-    newthumbnail: "i am thumnail",
+    newthumbnail: "",
   });
 
   const handleThumbnailUpload = (e) => {
@@ -69,8 +70,8 @@ function UpdateCourse() {
     formData.append("description", courseData.description);
     formData.append("category", courseData.category);
     formData.append("createdBy", courseData.createdBy);
-    if (courseData.newthumbnail !== "") {
-      formData.append("newthumbnail", courseData.newthumbnail);
+    if (courseData.newthumbnail instanceof File) {
+      formData.append("thumbnail", courseData.newthumbnail);
     }
 
     // dispatch create course action
@@ -82,7 +83,7 @@ function UpdateCourse() {
     if (!state) {
       navigate("/admin/dashboard");
     }
-  }, []);
+  }, [navigate, state]);
 
   return (
     <HomeLayout>

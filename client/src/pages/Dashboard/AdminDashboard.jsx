@@ -99,7 +99,7 @@ function AdminDashboard() {
       await dispatch(getStatsData());
       await dispatch(getAllCourses());
     })();
-  }, []);
+  }, [dispatch]);
   return (
     <HomeLayout>
       <div className="page-wrap !pt-8 flex flex-col gap-8 text-slate-900">

@@ -4,6 +4,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import morgan from "morgan";
+import mongoose from "mongoose";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 
 const app = express();
@@ -24,6 +25,14 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 // Server status check route
+app.get("/health", (_req, res) => {
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({ status: "unavailable" });
+  }
+
+  return res.status(200).json({ status: "ok" });
+});
+
 app.get("/ping", (_req, res) => {
   res.status(200).send("pong");
 });

@@ -8,10 +8,17 @@ import {
   destroyImageOnCloudinary,
 } from "../utils/cloudinary.util.js";
 
+const removeTemporaryUpload = async (file) => {
+  if (file?.path) {
+    await fs.rm(file.path, { force: true });
+  }
+};
+
 const cookieOption = {
   maxAge: 7 * 24 * 60 * 60 * 1000, //7 days
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production" ? true : false,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax",
 };
 
 /**
@@ -86,11 +93,9 @@ export const register = async (req, res, next) => {
       message: "Account created successfully",
       user,
     });
-    fs.rm(avatar.path);
+    await removeTemporaryUpload(avatar);
   } catch (error) {
-    if (avatar) {
-      fs.rm(avatar.path);
-    }
+    await removeTemporaryUpload(avatar);
     return next(new AppError(500, error.message));
   }
 };
@@ -271,7 +276,7 @@ export const changeProfilePic = async (req, res, next) => {
     await user.save();
 
     // deleting the req.file from server after uploading it to cloudinary
-    fs.rm(imageFile.path);
+    await removeTemporaryUpload(imageFile);
 
     res.status(201).json({
       success: true,
@@ -279,9 +284,7 @@ export const changeProfilePic = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    if (imageFile) {
-      fs.rm(imageFile.path);
-    }
+    await removeTemporaryUpload(imageFile);
     return next(new AppError(400, error.message));
   }
 };
@@ -433,7 +436,7 @@ export const updateProfile = async (req, res, next) => {
       user.avatar.secure_url = result.secure_url;
 
       // deleting the req.file from server after uploading it to cloudinary
-      fs.rm(imageFile.path);
+      await removeTemporaryUpload(imageFile);
     }
 
     // Saving the user object
@@ -445,9 +448,7 @@ export const updateProfile = async (req, res, next) => {
       user,
     });
   } catch (error) {
-    if (imageFile) {
-      fs.rm(imageFile.path);
-    }
+    await removeTemporaryUpload(imageFile);
     return next(new AppError(400, error.message));
   }
 };

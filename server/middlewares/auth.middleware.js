@@ -7,18 +7,18 @@ export const isLoggedIn = async (req, res, next) => {
     // Exracting token from cookies
     const { token } = req.cookies;
     if (!token) {
-      return next(new AppError(400, "Unauthenticated, Please login first"));
+      return next(new AppError(401, "Unauthenticated, please log in first"));
     }
 
     // Verifying the token and get user-id and other details from it
     const userDetails = await jwt.verify(token, process.env.JWT_SECRET);
     if (!userDetails) {
-      return next(new AppError(400, "Unauthenticated, Please login first"));
+      return next(new AppError(401, "Unauthenticated, please log in first"));
     }
     req.user = userDetails;
     next();
   } catch (error) {
-    return next(new AppError(500, error.message));
+    return next(new AppError(401, "Unauthenticated, please log in first"));
   }
 };
 
@@ -29,12 +29,12 @@ export const authorizeRoles =
     try {
       if (!roles.includes(req.user.role)) {
         return next(
-          new AppError(400, "You are not authorized for this action")
+          new AppError(403, "You are not authorized for this action")
         );
       }
       next();
     } catch (error) {
-      return next(new AppError(400, "Erver Error !"));
+      return next(new AppError(500, "Authorization check failed"));
     }
   };
 
